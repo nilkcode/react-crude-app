@@ -1,11 +1,13 @@
 import { logDOM } from '@testing-library/react'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { json, Link } from 'react-router-dom'
+import { json, Link,useNavigate } from 'react-router-dom'
 import { ContactService } from '../../../services/ContactService'
 
 
 const AddContact = () => {
+
+    let navigate = useNavigate();
 
     let[state, setState] = useState({
         loading:false,
@@ -35,20 +37,45 @@ const AddContact = () => {
 
     useEffect( async() => {
           try{
+            setState({...state ,loading:true, })
             let response = await ContactService.getGroups();
-            console.log(response.data);
-
+            setState({
+                ...state,
+                loading:false,
+                groups:response.data
+            })
           }catch(error){
 
           }
     },[])
 
-    let{loading, errorMessage, contact, group}  = state
+    let userFormSubmit = async(event) => {
+         event.preventDefault()
+         try{
+             let response = await ContactService.createContact(state.contact);
+             alert("Data successfully submited")
+             if(response){
+                 navigate('/contacts/list',{replace:true})
+             }
+         }catch(error){
+            setState({
+                ...state,
+                errorMessage: error.message
+
+            })
+            alert("Data not submited")
+
+            navigate('/contacts/add',{replace:false})
+         }
+
+    }
+
+    let{loading, errorMessage, contact, groups}  = state
  
     return (
         <>
-           <span>{JSON.stringify(state.contact)}</span>
-            <div className="container-fluid mt-5 w-75">
+           {/* <span>{JSON.stringify(state.groups)}</span> */}
+            <div className="container-fluid mt-3 w-75">
                 <h2 className='text-success bold'> Create Contact</h2>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic ipsam quas esse voluptate, itaque facilis eveniet.
                     A, totam iste! Necessitatibus nostrum tenetur repellat possimus,
@@ -56,7 +83,7 @@ const AddContact = () => {
 
                 <div className='card w-50 m-auto bg-secondary-gray'>
                     <div className='card-body'>
-                        <form action="/action_page.php">
+                        <form onSubmit={userFormSubmit}>
                             <div class="form-group">
                                 <label >Name:</label>
                                 <input type="text" name="name" value={contact.name} onChange={AddContactUser} class="form-control" placeholder="Name" id="email" />
@@ -84,9 +111,15 @@ const AddContact = () => {
                            
                                 <div class="form-group">
                                     <label for="sel1">Select Title:</label>
-                                    <select required={true} name="name" value = {contact.groupId} 
+                                    <select required={true} name="groupId" value={contact.groupId} 
                                      onChange={AddContactUser}  class="form-control" id="sel1">
-                                        <option></option>
+                                       {
+                                        groups.length > 0 && groups.map(group =>{
+                                            return(
+                                                <option key={group.id} value={group.id}>{group.name}</option>
+                                            )
+                                        })
+                                       } 
                                       
                                     </select>
                                 </div>
