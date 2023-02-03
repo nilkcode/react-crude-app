@@ -1,0 +1,29 @@
+component: -- navbar
+           -- contact-list
+           -- view-contact
+           -- edit-contact
+           -- add-contact
+
+services : --contactservice
+
+
+
+//////////////////////----data base creation ---////////////////////
+
+json server ->   npm install json-server
+
+json file   ->  db.json
+
+package.json  -> npm init --yes
+
+//////////////-------- API Creations ------//////////////////////////////
+
+Get all Contact      - GET -> http://localhost:9000/contacts
+
+Get a Single Contact - GET -> http://localhost:9000/contacts/id  
+
+Create Contact       - POST -> http://localhost:9000/contacts/  
+
+Update Contact       - PUT -> http://localhost:9000/contacts/id
+
+Delete Contact       - DELETE -> http://localhost:9000/contacts/id

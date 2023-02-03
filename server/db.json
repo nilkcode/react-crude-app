@@ -1,0 +1,48 @@
+{
+    "contacts": [
+        {
+            "id": "ak111",
+            "name": "Akash Ganate",
+            "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShJk_vj0wIS2WqLClrCGqp5aWzLDrv62TDzpFDg90&s",
+            "mobile": "9828292929",
+            "email": "akash@gmail.com",
+            "title": "Software Developer",
+            "company": "Google",
+            "groupId": "1"
+        },
+        {
+            "id": "ak113",
+            "name": "Jyoti Potdar",
+            "photo": "https://cdn-icons-png.flaticon.com/512/163/163847.png",
+            "mobile": "3333333",
+            "email": "Jyoti@gmail.com",
+            "title": "Software Developer",
+            "company": "Google US",
+            "groupId": "2"
+        },
+        {
+            "id": "ak114",
+            "name": "Tejas Tannu",
+            "photo": "https://static.vecteezy.com/system/resources/previews/004/476/164/original/young-man-avatar-character-icon-free-vector.jpg",
+            "mobile": "333333",
+            "email": "akash@gmail.com",
+            "title": "Software Developer",
+            "company": "Google India",
+            "groupId": "3"
+        }
+    ],
+    "groups": [
+        {
+            "id": "1",
+            "name": "colleague"
+        },
+        {
+            "id": "2",
+            "name": "family"
+        },
+        {
+            "id": "3",
+            "name": "Service"
+        }
+    ]
+}

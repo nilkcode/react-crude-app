@@ -1,0 +1,19 @@
+.cantact-list-section {
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 5px;
+}
+
+.card-custome {
+  display:flex !important;
+  flex-direction: row !important; 
+  align-items: center;
+}
+.label-value {
+  color: #000;
+  font-weight: 600;
+}
+
+.bg-secondary-gray {
+  background-color: #89909721!important;
+}
